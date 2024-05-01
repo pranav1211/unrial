@@ -10,6 +10,6 @@ function getdata() {
 }
 function geturl(data) {
     locations = data['sitelocation']
+    window.location = locations;
 }
 
-window.location = locations;
