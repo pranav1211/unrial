@@ -1,3 +1,4 @@
+getdata()
 var locations;
 
 function getdata() {
@@ -16,4 +17,4 @@ function geturl(data) {
     
 }
 
-getdata()
+
