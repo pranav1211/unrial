@@ -1,7 +1,7 @@
 var locations;
 fetch('index.json')
     .then(response => response.json())
-    .then(data => { geturl(data) })
+    .then(data => { console.log(data) })
     .catch(error => console.error('Error reading JSON:', error));
 
 function geturl(data){
