@@ -26,7 +26,7 @@ function changeurl(newurl) {
 const http = require('http');
 const { exec } = require('child_process');
 
-const hostname = 'unrial.com';
+const hostname = '0.0.0.0';
 const port = 6001;
 
 const server = http.createServer((req, res) => {

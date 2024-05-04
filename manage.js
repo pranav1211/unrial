@@ -27,5 +27,5 @@ setname.addEventListener('click', () => {
 });
 
 function updateData(newName) {
-    window.location = 'http://unrial.com:6005/qrep?data1='+ newName
+    window.location = 'http://0.0.0.0:6005/qrep?data1='+ newName
 }
