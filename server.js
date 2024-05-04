@@ -1,7 +1,7 @@
 const fs = require('fs');
 
 
-var newurl = "https://medium.com/@riav5012";
+var newurl;
 changeurl(newurl)
 
 function changeurl(newurl) {
