@@ -1,9 +1,6 @@
 const fs = require('fs');
 
 
-var newurl;
-changeurl(newurl)
-
 function changeurl(newurl) {
     fs.readFile('index.json', 'utf8', (err, data) => {
         if (err) {
