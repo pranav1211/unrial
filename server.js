@@ -26,7 +26,7 @@ function changeurl(newurl) {
 const http = require('http');
 const { exec } = require('child_process');
 
-const hostname = '0.0.0.0';
+const hostname = 'localhost';
 const port = 6005;
 
 const server = http.createServer((req, res) => {
