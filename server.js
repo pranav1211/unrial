@@ -1,19 +1,5 @@
 const fs = require('fs');
-const express = require('express');
-const app = express();
-const port = 80;
 
-app.use(express.json());
-
-app.post('/updateData', (req, res) => {
-    const { newurl } = req.body;
-    if (!newurl) {
-        return res.status(400).json({ error: 'New URL not provided' });
-    }
-
-    changeurl(newurl);
-    res.json({ message: 'Data updated successfully' });
-});
 
 var newurl = "https://medium.com/@riav5012";
 changeurl(newurl)
@@ -39,3 +25,26 @@ function changeurl(newurl) {
 
     });
 }
+
+const http = require('http');
+const { exec } = require('child_process');
+
+const hostname = '0.0.0.0';
+const port = 6001;
+
+const server = http.createServer((req, res) => {
+    const url = req.url;
+    const substr = '/qrep'
+    if (url.includes(substr)) {
+        console.log('server called');
+        const querystring = url.split('?')[1];
+        const parameters = new URLSearchParams(querystring)
+        const data1 = parameters.get('data1')
+        changeurl(data1)
+    }
+}
+);
+
+server.listen(port, hostname, () => {
+    console.log(`Server running at http://${hostname}:${port}/`);
+});
