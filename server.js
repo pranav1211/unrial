@@ -53,6 +53,6 @@ app.get('/your-endpoint', (req, res) => {
     res.json({ message: 'New intimation!' });
 });
 
-app.listen(3000, () => console.log('Server listening on port 3000'));
+app.listen(3000, () => console.log('Server listening on port 3000 yo'));
 
 
