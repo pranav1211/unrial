@@ -23,10 +23,10 @@ function changeurl(newurl) {
     });
 }
 
-const http = require('http');
+const http = require('https');
 const { exec } = require('child_process');
 
-const hostname = '0.0.0.0';
+const hostname = '64.227.143.61';
 const port = 6001;
 
 const server = http.createServer((req, res) => {
@@ -43,5 +43,5 @@ const server = http.createServer((req, res) => {
 );
 
 server.listen(port, hostname, () => {
-    console.log(`Server running at http://${hostname}:${port}/`);
+    console.log(`Server running at https://${hostname}:${port}/`);
 });
