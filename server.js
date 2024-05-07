@@ -50,9 +50,14 @@ const express = require('express');
 const app = express();
 
 app.get('/your-endpoint', (req, res) => {
-    res.json({ message: 'New intimation!' });
+    // Generate your HTML content (replace with your actual logic)
+    const htmlContent = `
+    <h1>This is the response from the Node.js server!</h1>
+    <p>The current time on the server is: ${new Date().toLocaleString()}</p>
+  `;
+    res.send(htmlContent);
 });
 
-app.listen(3000, () => console.log('Server listening on port 3000 yo'));
+app.listen(3000, () => console.log('Server listening on port 3000'));
 
 
