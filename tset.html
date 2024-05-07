@@ -15,14 +15,15 @@
 
         button.addEventListener('click', async () => {
             fetch('/your-endpoint')
-                .then(response => response.json())
+                .then(response => response.text()) // Fetch the response as text
                 .then(data => {
                     console.log('Received data:', data);
-                    // Update your webpage based on the received data
+                    // Update your webpage content (data is the received HTML)
+                    responseDiv.innerHTML = data; // Update the "response" element with the received HTML
                 })
                 .catch(error => console.error(error));
-
         });
+        
     </script>
 </body>
 
