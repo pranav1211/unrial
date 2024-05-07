@@ -1,31 +1,33 @@
-var getname = document.querySelector('#getname');
-var setname = document.querySelector('#setname');
-var thename = document.querySelector('#name');
-var thedata;
+const getname = document.querySelector('#getname');
+const setname = document.querySelector('#setname');
+const thename = document.querySelector('#name');
 
 function getdata() {
-    fetch('index.json')
-        .then(response => response.json())
-        .then(data => { 
-            thedata = data;
-            senddata(thedata);
-        })
-        .catch(error => console.error('Error reading JSON:', error));
+  fetch('/get-location') // Replace with actual route for fetching data
+    .then(response => response.json())
+    .then(data => {
+      thename.innerHTML = data.sitelocation;
+    })
+    .catch(error => console.error('Error fetching data:', error));
 }
 
 getname.addEventListener('click', () => {
-    getdata();
-});
-
-function senddata(data) {
-    thename.innerHTML = data["sitelocation"];
-}
-
-setname.addEventListener('click', () => {
-    var newname = prompt("Enter new name");
-    updateData(newname)
+  getdata();
 });
 
 function updateData(newName) {
-    window.location = 'https://64.227.143.61:6005/qrep?data1='+ newName
+  fetch('/update-location', { // Replace with actual route for updating data
+    method: 'POST', // Use POST for sending data
+    body: JSON.stringify({ newLocation: newName }),
+    headers: { 'Content-Type': 'application/json' }
+  })
+    .then(response => response.text()) // Handle response (optional)
+    .catch(error => console.error('Error updating data:', error));
 }
+
+setname.addEventListener('click', () => {
+  var newname = prompt("Enter new name");
+  if (newname) {
+    updateData(newname);
+  }
+});
