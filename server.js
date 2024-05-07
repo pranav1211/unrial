@@ -46,25 +46,32 @@
 //     console.log(`Server running at https://${hostname}:${port}/`);
 // });
 
+const https = require('https');
+const fs = require('fs');
 const express = require('express');
+
+const options = {
+  key: fs.readFileSync('key.pem'),
+  cert: fs.readFileSync('cert.pem'),
+};
+
 const app = express();
-const port = 3000; // Replace with your desired port
 
-app.get('/your-endpoint', (req, res) => {
-    // Handle your request logic here
-    // For example, generate some data
-    const data = { message: 'Hello from your Node.js server!' };
-    res.json(data);
-});
-
-// **Important:** Configure CORS headers if necessary for cross-origin requests
+// Redirect HTTP to HTTPS
 app.use((req, res, next) => {
-    res.header('Access-Control-Allow-Origin', '*'); // Adjust origin accordingly
-    res.header('Access-Control-Allow-Headers', 'Content-Type, Authorization'); // Adjust headers as needed
-    next();
+  if (req.headers['x-forwarded-proto'] !== 'https') {
+    return res.redirect(`https://${req.headers.host}${req.url}`);
+  }
+  next();
 });
 
-app.listen(port, () => {
-    console.log(`Server listening on port ${port}`);
+// Your app routes here (replace with your actual route handling and logic)
+app.get('/', (req, res) => {
+  res.send('Hello from your secure HTTPS server!');
+});
+
+const server = https.createServer(options, app);
+server.listen(443, () => {
+  console.log(`Server listening on port 443 (HTTPS)`);
 });
 
