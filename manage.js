@@ -27,5 +27,21 @@ setname.addEventListener('click', () => {
 });
 
 function updateData(newName) {
-    window.location = 'https://64.227.143.61:6001/qrep?data1='+ newName
+    try {
+        const serverUrl = 'https://64.227.143.61:3000/your-endpoint'    
+
+        // Important: Handle potential cross-origin issues (CORS) if applicable
+        const response = await fetch(serverUrl, {
+            // Add CORS headers if necessary (refer to server-side setup)
+        });
+
+        if (!response.ok) {
+            throw new Error(`HTTP error! status: ${response.status}`);
+        }
+
+        const data = await response.json(); // Assuming the response is JSON
+        responseDiv.textContent = JSON.stringify(data, null, 2); // Pretty-print JSON response
+    } catch (error) {
+        responseDiv.textContent = `Error: ${error.message}`;
+    }
 }
