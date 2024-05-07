@@ -1,0 +1,35 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>Live HTTP Call</title>
+</head>
+<body>
+    <button id="makeCall">Make Call</button>
+    <p id="response"></p>
+
+    <script>
+        const button = document.getElementById('makeCall');
+        const responseDiv = document.getElementById('response');
+
+        button.addEventListener('click', async () => {
+            try {
+                const serverUrl = `http://${'143.31.64.782'}:3000/your-endpoint`; // Replace with your actual endpoint
+
+                // Important: Handle potential cross-origin issues (CORS) if applicable
+                const response = await fetch(serverUrl, {
+                    // Add CORS headers if necessary (refer to server-side setup)
+                });
+
+                if (!response.ok) {
+                    throw new Error(`HTTP error! status: ${response.status}`);
+                }
+
+                const data = await response.json(); // Assuming the response is JSON
+                responseDiv.textContent = JSON.stringify(data, null, 2); // Pretty-print JSON response
+            } catch (error) {
+                responseDiv.textContent = `Error: ${error.message}`;
+            }
+        });
+    </script>
+</body>
+</html>
