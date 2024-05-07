@@ -1,61 +1,33 @@
-// const fs = require('fs');
+const fs = require('fs');
 
 
-// function changeurl(newurl) {
-//     fs.readFile('index.json', 'utf8', (err, data) => {
-//         if (err) {
-//             console.error(err)
-//             return;
-//         }
+function changeurl(newurl) {
+    fs.readFile('index.json', 'utf8', (err, data) => {
+        if (err) {
+            console.error(err)
+            return;
+        }
 
-//         const jsdata = JSON.parse(data)
+        const jsdata = JSON.parse(data)
 
-//         jsdata.sitelocation = newurl
+        jsdata.sitelocation = newurl
 
-//         fs.writeFile('index.json', JSON.stringify(jsdata), 'utf8', (err) => {
-//             if (err) {
-//                 console.error(err)
-//                 return;
-//             }
-//             console.log("Rewrite success")
-//         })
+        fs.writeFile('index.json', JSON.stringify(jsdata), 'utf8', (err) => {
+            if (err) {
+                console.error(err)
+                return;
+            }
+            console.log("Rewrite success")
+        })
 
-//     });
-// }
-
-// const http = require('http');
-// const { exec } = require('child_process');
-
-// const hostname = '64.227.143.61';
-// const port = 6001;
-
-// const server = http.createServer((req, res) => {
-//     const url = req.url;
-//     const substr = '/qrep'
-//     if (url.includes(substr)) {
-//         console.log('server called');
-//         const querystring = url.split('?')[1];
-//         const parameters = new URLSearchParams(querystring)
-//         const data1 = parameters.get('data1')
-//         changeurl(data1)
-//     }
-// }
-// );
-
-// server.listen(port, hostname, () => {
-//     console.log(`Server running at https://${hostname}:${port}/`);
-// });
+    });
+}
 
 const express = require('express');
 const app = express();
 
-app.get('/your-endpoint', (req, res) => {
-    // Generate your HTML content (replace with your actual logic)
-    const htmlContent = `
-    <h1>This is the response from the Node.js server!</h1>
-    <p>The current time on the server is: ${new Date().toLocaleString()}</p>
-  `;
-    res.send(htmlContent);
+app.get('/server.js', (req, res) => {
+    changeurl("test")
 });
 
 app.listen(3000, () => console.log('Server listening on port 3000'));
