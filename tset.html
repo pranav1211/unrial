@@ -1,8 +1,10 @@
 <!DOCTYPE html>
 <html>
+
 <head>
     <title>Live HTTP Call</title>
 </head>
+
 <body>
     <button id="makeCall">Make Call</button>
     <p id="response"></p>
@@ -12,24 +14,16 @@
         const responseDiv = document.getElementById('response');
 
         button.addEventListener('click', async () => {
-            try {
-                const serverUrl = `https://${'64.227.143.61'}:3000/your-endpoint`; // Replace with your actual endpoint
+            fetch('/your-endpoint')
+                .then(response => response.json())
+                .then(data => {
+                    console.log('Received data:', data);
+                    // Update your webpage based on the received data
+                })
+                .catch(error => console.error(error));
 
-                // Important: Handle potential cross-origin issues (CORS) if applicable
-                const response = await fetch(serverUrl, {
-                    // Add CORS headers if necessary (refer to server-side setup)
-                });
-
-                if (!response.ok) {
-                    throw new Error(`HTTP error! status: ${response.status}`);
-                }
-
-                const data = await response.json(); // Assuming the response is JSON
-                responseDiv.textContent = JSON.stringify(data, null, 2); // Pretty-print JSON response
-            } catch (error) {
-                responseDiv.textContent = `Error: ${error.message}`;
-            }
         });
     </script>
 </body>
+
 </html>

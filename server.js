@@ -48,23 +48,11 @@
 
 const express = require('express');
 const app = express();
-const port = 3000; // Replace with your desired port
 
 app.get('/your-endpoint', (req, res) => {
-    // Handle your request logic here
-    // For example, generate some data
-    const data = { message: 'Hello from your Node.js server!' };
-    res.json(data);
+    res.json({ message: 'New intimation!' });
 });
 
-// **Important:** Configure CORS headers if necessary for cross-origin requests
-app.use((req, res, next) => {
-    res.header('Access-Control-Allow-Origin', '*'); // Adjust origin accordingly
-    res.header('Access-Control-Allow-Headers', 'Content-Type, Authorization'); // Adjust headers as needed
-    next();
-});
+app.listen(3000, () => console.log('Server listening on port 3000'));
 
-app.listen(port, () => {
-    console.log(`Server listening on port ${port}`);
-});
 
