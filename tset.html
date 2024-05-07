@@ -14,7 +14,7 @@
     const responseDiv = document.getElementById('response');
 
     button.addEventListener('click', async () => {
-      fetch('/your-endpoint')
+      fetch('/server.js')
         .then(response => response.text()) // Fetch the response as text
         .then(data => {
           console.log('Received data:', data);
