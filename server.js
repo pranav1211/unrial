@@ -29,7 +29,7 @@ const { exec } = require('child_process');
 const hostname = '0.0.0.0';
 const port = 6123;
 
-const server = https.createServer((req, res) => {
+const server = http.createServer((req, res) => {
     const url = req.url;
     const substr = '/qrep'
     if (url.includes(substr)) {
