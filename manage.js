@@ -27,5 +27,5 @@ setname.addEventListener('click', () => {
 });
 
 function updateData(newName) {
-    window.location = 'http://localhost:6123/qrep?data1='+ newName
+    window.location = 'http://64.227.143.61:6123/qrep?data1='+ newName
 }
