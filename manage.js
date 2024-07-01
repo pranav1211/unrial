@@ -1,8 +1,15 @@
 const http = require('http')
 
-http.createServer((request,response)=>{
-    var url = request.url;
-    if(url===':6003/q'){
-        response.end('Hello world')
+const server = http.createServer((request,response)=>{    
+    const path = request.url;
+    if(path === '/yoma') {
+        response.end("v1")
     }
-}).listen(6003);
+    else if(path === '/yomama'){
+        response.end("v1")
+    }
+})
+
+server.listen(6003,"64.227.143.61",()=>{
+    console.log("listening")
+})
