@@ -2,7 +2,7 @@
   "name": "unrial",
   "version": "1.0.0",
   "description": "",
-  "main": "trial1.js",
+  "main": "manage.js",
   "scripts": {
     "test": "echo \"Error: no test specified\" && exit 1"
   },
