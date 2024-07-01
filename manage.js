@@ -26,13 +26,13 @@ function changeurl(newurl) {
 http.createServer((request, response) => {
     const path = request.url;
     const substr = '/yoma'
-    if (path.includes(substr)) {
-        console.log('server called');
-        const querystring = url.split('?')[1];
-        const parameters = new URLSearchParams(querystring)
-        const data1 = parameters.get('data1')
-        changeurl(data1)
-        response.end("name changed");
+    response.end("name changed");
+    // if (path.includes(substr)) {
+    //     console.log('server called');
+    //     const querystring = url.split('?')[1];
+    //     const parameters = new URLSearchParams(querystring)
+    //     const data1 = parameters.get('data1')
+    //     changeurl(data1)        
     }
 
 }).listen(6003);
