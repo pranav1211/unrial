@@ -1,5 +1,8 @@
 const http = require('http')
 
 http.createServer((request,response)=>{
-    response.end('Hello world')
-}).listen(6002);
+    var url = request.url;
+    if(url===':6003/q'){
+        response.end('Hello world')
+    }
+}).listen(6003);
