@@ -27,12 +27,12 @@ http.createServer((request, response) => {
     const path = request.url;
     const substr = '/yoma'
     response.end("name changed");
-    // if (path.includes(substr)) {
-    //     console.log('server called');
-    //     const querystring = url.split('?')[1];
-    //     const parameters = new URLSearchParams(querystring)
-    //     const data1 = parameters.get('data1')
-    //     changeurl(data1)        
-    // }
+    if (path.includes(substr)) {
+        console.log('server called');
+        const querystring = url.split('?')[1];
+        const parameters = new URLSearchParams(querystring)
+        const data1 = parameters.get('data1')
+        changeurl(data1)        
+    }
 
 }).listen(6003);
