@@ -1,13 +1,15 @@
 const http = require('http');
 const fs = require('fs');
-const { json } = require('stream/consumers');
+const { URLSearchParams } = require('url'); // Import URLSearchParams from 'url' module
+
+let jsdata; // Define jsdata outside of fs.readFile to ensure it's accessible globally
 
 fs.readFile('index.json', 'utf8', (err, data) => {
     if (err) {
         console.error(err);
         return;
     }
-    const jsdata = JSON.parse(data);
+    jsdata = JSON.parse(data); // Assign data to jsdata
 });
 
 function changeurl(newurl) {
@@ -25,14 +27,20 @@ function changeurl(newurl) {
 
 http.createServer((request, response) => {
     const path = request.url;
-    const substr = '/yoma'    
+    const substr = '/yoma';
+
     if (path.includes(substr)) {
         console.log('server called');
-        const querystring = url.split('?')[1];
-        const parameters = new URLSearchParams(querystring)
-        const data1 = parameters.get('data1')
-        changeurl(data1)
-        response.end("name changed")   
+        const querystring = path.split('?')[1]; // Use 'path' instead of 'url' to get the query string
+        const parameters = new URLSearchParams(querystring);
+        const data1 = parameters.get('data1');
+        changeurl(data1);
+        response.end("name changed");
+    } else {
+        response.statusCode = 404;
+        response.end("Not Found");
     }
 
 }).listen(6003);
+
+console.log('Server running at http://localhost:6003/');
