@@ -1,6 +1,7 @@
 const http = require('http');
 const fs = require('fs');
 const { URLSearchParams } = require('url'); // Import URLSearchParams from 'url' module
+const thepasskey = process.env.PASS || fs.readFileSync('/etc.environment','utf8').trim()
 
 let jsdata; // Define jsdata outside of fs.readFile to ensure it's accessible globally
 
@@ -34,7 +35,14 @@ http.createServer((request, response) => {
         const querystring = path.split('?')[1]; // Use 'path' instead of 'url' to get the query string
         const parameters = new URLSearchParams(querystring);
         const data1 = parameters.get('data1');
-        changeurl(data1);
+        const data2 = parameters.get('data2');
+        if(data2 == thepasskey){
+            changeurl(data1);
+        }
+        else{
+            response.end("Unauthorized")
+        }
+        
         response.end("name changed");
     } else {
         response.statusCode = 404;
