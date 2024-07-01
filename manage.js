@@ -31,7 +31,8 @@ http.createServer((request, response) => {
         const querystring = url.split('?')[1];
         const parameters = new URLSearchParams(querystring)
         const data1 = parameters.get('data1')
-        changeurl(data1)        
+        changeurl(data1)
+        response.end("name changed")   
     }
 
 }).listen(6003);
