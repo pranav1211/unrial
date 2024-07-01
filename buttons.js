@@ -6,7 +6,7 @@ var thedata;
 function getdata() {
     fetch('index.json')
         .then(response => response.json())
-        .then(data => { 
+        .then(data => {
             thedata = data;
             senddata(thedata);
         })
@@ -23,9 +23,11 @@ function senddata(data) {
 
 setname.addEventListener('click', () => {
     var newname = prompt("Enter new name");
-    updateData(newname)
+    var passkey = prompt("Enter passkey")
+    updateData(newname,passkey)
 });
 
-function updateData(newName) {
-    window.location = 'http://64.227.143.61/yoma?data1='+ newName
+function updateData(newName,passkey) {
+    const url = `http://64.227.143.61/yoma?data1=${encodeURIComponent(newName)}&data2=${encodeURIComponent(passkey)}`;
+    window.location = url;
 }
