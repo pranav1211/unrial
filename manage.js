@@ -2,6 +2,7 @@ const http = require('http')
 
 http.createServer((request,response)=>{
     var path = request.url;
+    response.end('test');
     if(path === '/yoma') {
         response.end("v1")
     }
