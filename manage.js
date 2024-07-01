@@ -33,6 +33,6 @@ http.createServer((request, response) => {
     //     const parameters = new URLSearchParams(querystring)
     //     const data1 = parameters.get('data1')
     //     changeurl(data1)        
-    }
+    // }
 
 }).listen(6003);
