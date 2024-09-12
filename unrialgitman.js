@@ -4,8 +4,8 @@ const { exec } = require('child_process');
 const path = require('path');
 require('dotenv').config();
 
-const scriptPath = '/shellfiles/mylib.sh';
-const GITHUB_SECRET = process.env.mylibgitkey;
+const scriptPath = '/shellfiles/unrial.sh';
+const GITHUB_SECRET = process.env.unrialgitkey;
 
 const app = express();
 
@@ -29,7 +29,7 @@ app.use((req, res, next) => {
     next();
 });
 
-app.post('/mylibg', (req, res) => {
+app.post('/unrialg', (req, res) => {
     exec(`sh ${scriptPath}`, (error, stdout, stderr) => {
         if (error) {
             console.error(`Error executing script: ${error}`);
@@ -45,6 +45,6 @@ app.post('/mylibg', (req, res) => {
     });
 });
 
-app.listen(6004, () => {
-    console.log('Server is running on port 6004');
+app.listen(6008, () => {
+    console.log('Server is running on port 6008');
 });
